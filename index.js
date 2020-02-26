@@ -16,8 +16,12 @@ io.on("connection", function(socket) {
 	// checking the client did the sent something if yes then it will sent to
 	// all socket means client
 	socket.on("chat", function(data) {
-        console.log("server side");
+		// console.log("server side");
 		io.emit("chat", data);
 	});
-});
 
+    //broadcasting message
+	socket.on("typing", function(data) {
+		socket.broadcast.emit("typing", data);
+	});
+});
